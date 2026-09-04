@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 通用 Maven 加速配置，支持 JDK 11+，Java Web 全场景适用 -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd">
+
+  <!-- 本地仓库路径（自动在用户目录创建 maven_repo 文件夹，无需手动修改） -->
+  <localRepository>${user.home}/.m2/repository</localRepository>
+
+  <!-- 镜像配置（阿里云中央仓库，国内下载加速核心） -->
+  <mirrors>
+    <mirror>
+      <id>aliyunmaven</id>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <!-- 全局 JDK 配置（固定 JDK 11，通用无兼容性问题） -->
+  <profiles>
+    <profile>
+      <id>jdk-11</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <jdk>11</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.compilerVersion>11</maven.compiler.compilerVersion>
+        <encoding>UTF-8</encoding>
+      </properties>
+    </profile>
+  </profiles>
+
+  <!-- 激活 JDK 11 配置 -->
+  <activeProfiles>
+    <activeProfile>jdk-11</activeProfile>
+  </activeProfiles>
+</settings>
